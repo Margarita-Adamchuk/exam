@@ -7,17 +7,14 @@ class Tomato:
         self._state = 1
 
     def grow(self):
-        self._change_state()
+        if self._state < 3:
+            self._state += 1
+        self._print_state()
 
     def is_ripe(self):
         if self._state == 3:
             return True
         return False
-
-    def _change_state(self):
-        if self._state < 3:
-            self._state += 1
-        self._print_state()
 
     def _print_state(self):
         print(f"Помидоры {self._index} в {Tomato.states[self._state]}")
@@ -25,7 +22,7 @@ class Tomato:
 class TomatoBush:
 
     def __init__(self, num):
-        self.tomatoes = [Tomato(index) for index in range(0, num)]
+        self.tomatoes = [Tomato(index) for index in range(num)]
 
     def grow_all(self):
         for tomato in self.tomatoes:
